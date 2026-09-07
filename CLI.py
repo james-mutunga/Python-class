@@ -18,21 +18,22 @@ score = 0
 
 # QUESTION 1 SYNTAX
 
-# This allows us to display the question of with index 0 of my questions list
+# This allows us to display the question with index 0 of my questions list. The ["q"] tells the code to go into the dictionary and get the specific question
 print(questions[0]["q"])
 
-# Here I included the input() in my try and except
+# Here I included the input() within my try and except function
 try:
 # user_answer will allow the user to input either of the choices displayed
   user_answer = input("A. Paris, B. London, C. Berlin, D. Madrid: ")
-# user_choice will allow us to trigger the look up for other values such as "Z" or "zzz" (Not sure about this?)
+# user_choice will allow us to trigger the look up for other values that aren't any of the choices available (A, B, C, D)
   user_choice = choices[0][user_answer]
+# Here i added my except condition that allows me to exclude any other results
 except KeyError:
   print("Error: Please enter (A, B, C or D)")
 else:
     if user_answer == answer[0]:
       print("Correct!")
-      score = score + 1
+      score += 1
     else:
       print("Incorrect!")
 
@@ -46,7 +47,7 @@ except KeyError:
 else:
     if user_answer == answer[1]:
       print("Correct!")
-      score = score + 1
+      score += 1
     else:
       print("Incorrect!")
 
@@ -60,7 +61,7 @@ except KeyError:
 else:
     if user_answer == answer[2]:
       print("Correct!")
-      score = score + 1
+      score += 1
     else:
       print("Incorrect!")
 
