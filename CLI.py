@@ -55,7 +55,7 @@ random.shuffle(quiz_data)
 
 for quiz_data_index in range(total):
     question = quiz_data[quiz_data_index]
-    print(f"\nQuestion {quiz_data_index + 1}/{total} : {question['question']}")
+    print(f"\nQuestion {quiz_data_index + 1}/{total} : {question['question']}\n")
 
     for key, choice in question["choice"].items():
         print(f"{key}.{choice}")
@@ -69,9 +69,18 @@ for quiz_data_index in range(total):
     correct_answer = question['answer']
 
     if user_answer == correct_answer:
-     print("Correct Answer!")
+     print("\nCorrect Answer!")
      score +=1
     else:
-     print("Wrong Answer.")
+     print(f"\nClose! The Correct Answer is {correct_answer}")
 
-print(f"Your Score is {score}/{total}")
+print(f"\nYour Score is {score}/{total}")
+
+if score == 1:
+   print(f"Good trial!")
+elif score == 2:
+   print(f"Great job!")
+elif score == 3:
+   print(f"Excellent!")
+else:
+   print(f"Oops. Better Luck Next time.")
