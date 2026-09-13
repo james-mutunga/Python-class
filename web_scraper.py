@@ -67,10 +67,12 @@ def product_details():
             price_clean = float(price_text.replace('£', ''))
             # Here we are introducing price_converted where we will multiply the clean price by the current rate
             price_converted = price_clean * rate
+            # Now we will append each results; names and prices into the lists we introduced
             names.append(name)
             prices.append(price_text)
             cleaned_prices.append(price_clean)
             converted_prices.append(price_converted)
+            # This will give us the name of the book, its price in GDP and its price in Kes
             print(f"Book name: {name}, Book price in GBP: {price_clean}, Book price in KES: {price_converted:.2f}")
 
 product_details()
