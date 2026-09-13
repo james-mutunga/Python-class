@@ -1,76 +1,77 @@
-# I started by storing each of my data (questions, choices and answer) in lists to allow for subsetting and indexing
+# Questions
 
-questions = [
-    {"q": "What is the capital of France?"},
-    {"q": "Which planet is known as the Red Planet?"},
-    {"q": "What is the largest mammal in the world?"}
+# What is the capital city of France?
+# Which planet is known as the Red Planet?
+# What is the largest mammal in the world?
+
+# Choices
+
+# A. Paris B. London C. Berlin D. Madrid
+# A. Mars B. Venus C. Jupiter, D. Saturn
+# A. Elephant B. Blue Whale C. Giraffe D. Hippopotamus
+
+# Correct Answers
+
+# A
+# A
+# B
+
+import random
+
+# This is my quiz_data that will store 3 dictionaries for 3 different questons
+quiz_data = [
+    # dictionary for question 1 with its choices and correct answers
+    {
+        # question[0]
+"question": "What is the capital city of France?",
+        # choice[0]
+"choice": {"A":"Paris", "B":"London", "C":"Berlin", "D":"Madrid"},
+        # answer[0]
+"answer": "A"
+    },
+        # dictionary for question 2 with its choices and correct answers
+    {
+        # question[1]
+"question": "Which planet is known as the Red Planet?",
+        # choice[1]
+"choice": {"A":"Mars", "B":"Venus", "C":"Jupiter", "D":"Saturn"},
+        # answer[1]
+"answer": "A"
+    },
+        # dictionary for question 3 with its choices and correct answers
+    {
+        # question[2]
+"question": "What is the largest mammal in the world?",
+        # choice[2]
+"choice": {"A":"Elephant", "B":"Blue Whale", "C":"Giraffe", "D": "Hippopotamus"},
+        # answer[2]
+"answer": "B"
+    }
 ]
 
-choices = [
-    {"A": "Paris", "B": "London", "C": "Berlin", "D": "Madrid"},
-    {"A": "Mars", "B": "Venus", "C": "Jupiter", "D": "Saturn"},
-    {"A": "Elephant", "B": "Blue Whale", "C": "Giraffe", "D": "Hippopotamus"}
-]
-
-answer = ["A", "A", "B"]
-
+total = len(quiz_data)
 score = 0
+random.shuffle(quiz_data)
 
-# QUESTION 1 SYNTAX
+for quiz_data_index in range(total):
+    question = quiz_data[quiz_data_index]
+    print(f"\nQuestion {quiz_data_index + 1}/{total} : {question['question']}")
 
-# This allows us to display the question with index 0 of my questions list. The ["q"] tells the code to go into the dictionary and get the specific question
-print(questions[0]["q"])
+    for key, choice in question["choice"].items():
+        print(f"{key}.{choice}")
 
-# Here I included the input() within my try and except function
-try:
-# user_answer will allow the user to input either of the choices displayed
-  user_answer = input("A. Paris, B. London, C. Berlin, D. Madrid: ")
-# user_choice will allow us to trigger the look up for other values that aren't any of the choices available (A, B, C, D)
-  user_choice = choices[0][user_answer]
-# Here i added my except condition that allows me to exclude any other results
-except KeyError:
-  print("Error: Please enter (A, B, C or D)")
-else:
-    if user_answer == answer[0]:
-      print("Correct!")
-      score += 1
+    user_answer = input("\nYour Answer (A, B, C or D): ").upper().strip()
+
+    while user_answer not in question["choice"]:
+       print("Invalid input. Please enter A, B, C or D.")
+       user_answer = input("\nYour Answer (A, B, C or D): ").upper().strip()
+
+    correct_answer = question['answer']
+
+    if user_answer == correct_answer:
+     print("Correct Answer!")
+     score +=1
     else:
-      print("Incorrect!")
+     print("Wrong Answer.")
 
-# QUESTION 2
-print(questions[1]["q"])
-try:
-  user_answer = input("A. Mars, B. Venus, C. Jupiter, D. Saturn: ")
-  user_choice = choices[1][user_answer]
-except KeyError:
-  print("Error: Please enter (A, B, C or D)")
-else:
-    if user_answer == answer[1]:
-      print("Correct!")
-      score += 1
-    else:
-      print("Incorrect!")
-
-# QUESTION 3
-print(questions[2]["q"])
-try:
-  user_answer = input("A. Elephant, B. Blue Whale, C. Giraffe, D. Hippopotamus: ")
-  user_choice = choices[2][user_answer]
-except KeyError:
-  print("Error: Please enter (A, B, C or D)")
-else:
-    if user_answer == answer[2]:
-      print("Correct!")
-      score += 1
-    else:
-      print("Incorrect!")
-
-print(f"Your score is {score}/3")
-
-# This is our score logic
-if score == 3:
-  print("Well done!")
-elif score >= 2:
-  print("Not bad.")
-else:
-  print("Better luck next time")
+print(f"Your Score is {score}/{total}")
