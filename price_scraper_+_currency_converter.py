@@ -1,8 +1,6 @@
 # These are our import module functons to allow access to the web browser for requests and threading.
 
-import webbrowser
 import requests
-import threading
 from bs4 import BeautifulSoup
 
 # This is to import our .env so that we can access the "EXCHANGE_API_KEY"
@@ -19,7 +17,7 @@ def get_conversion_rate(target_currency, api_key):
 # This is my error handling using try/except in the case of a failed connection
     try:
         response = requests.get(url)
-    # The except function here creates a request exception that will allow us to print our error message if "respons = requests.get(url)" doens't run
+    # The except function here creates a request exception that will allow us to print our error message if "response = requests.get(url)" doens't run
     except requests.exceptions.RequestException:
         print("Error: Failed to connect to the internet.")
         # We return none to stop the program
